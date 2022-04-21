@@ -1,0 +1,38 @@
+{
+  "name": "siwc",
+  "version": "1.0.0",
+  "description": "Sign-In with Conflux",
+  "main": "dist/siwc.js",
+  "types": "dist/siwc.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "author": "Spruce Systems Inc.",
+  "license": "Apache-2.0",
+  "keywords": [
+    "ethereum",
+    "sign-in",
+    "sign-in-with-ethereum",
+    "siwc"
+  ],
+  "homepage": "https://github.com/mpoulhazan/siwc",
+  "dependencies": {
+    "@spruceid/siwe-parser": "file:../siwe-parser",
+    "@stablelib/random": "^1.0.1",
+    "apg-js": "^4.1.1"
+  },
+  "peerDependencies": {
+    "ethers": "5.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpoulhazan/siwc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mpoulhazan/siwc/issues"
+  }
+}

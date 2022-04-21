@@ -1,0 +1,10 @@
+{
+  "packages": ["packages/siwc", "packages/siwe-parser"],
+  "npmClient": "npm",
+  "command": {
+    "publish": {
+      "registry": "https://npm.pkg.github.com"
+    }
+  },
+  "version": "1.0.0"
+}
