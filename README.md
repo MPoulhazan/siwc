@@ -1,4 +1,4 @@
-![Sign-In with Conflux logo](https://login.xyz/favicon.png "Sign-In with Conflux logo")
+# Sign in with Conflux
 
 Sign-In with Conflux describes how Conflux accounts authenticate with
 off-chain services by signing a standard message format parameterized by scope,
