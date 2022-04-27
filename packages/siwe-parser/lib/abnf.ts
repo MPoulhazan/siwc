@@ -21,9 +21,8 @@ sign-in-with-ethereum =
 
 domain = authority
 
-address = "0x" 40*40HEXDIG
-    ; Must also conform to captilization
-    ; checksum encoding specified in EIP-55
+address = "0x" 40*40HEXDIG / ("cfxtest:" / "cfx:") 42*( ALPHA / DIGIT )
+    ; checksum encoding specified in EIP-55 or CIP-37
     ; where applicable (EOAs).
 
 statement = 1*( reserved / unreserved / " " )

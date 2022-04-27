@@ -1,10 +1,16 @@
 import { randomStringForEntropy } from "@stablelib/random";
 import { Contract, ethers, utils } from "ethers";
 import { ParsedMessage, ParsedMessageRegExp } from "siwe-parser";
+import { toBuffer } from "@fluent-wallet/utils";
+import { getMessage as cip23GetMessage, TypedData } from "cip-23";
+import { keccak256 } from "@ethersproject/keccak256";
+import { Message as CfxMessage, sign as cfxSDKSign } from "js-conflux-sdk";
 
-const { PersonalMessage } = require("js-conflux-sdk");
+const { format } = require("js-conflux-sdk");
 
 export const CONFLUX_CHAIN_ID = 1030;
+const CONFLUX_NETWORK = 1;
+const CIP23_DOMAIN = "CIP23Domain";
 
 /**
  * Possible message error types.
@@ -17,18 +23,6 @@ export enum ErrorTypes {
   /**Thrown when some required field is missing. */
   MALFORMED_SESSION = "Malformed session.",
 }
-
-/**@deprecated
- * Possible signature types that this library supports.
- *
- * This enum will be removed in future releases. And signature type will be
- * inferred from version.
- */
-export enum SignatureType {
-  /**EIP-191 signature scheme */
-  PERSONAL_SIGNATURE = "Personal signature",
-}
-
 export class SiwcMessage {
   /**RFC 4501 dns authority that is requesting the signing. */
   domain: string;
@@ -72,12 +66,6 @@ export class SiwcMessage {
    * the message.
    */
   signature?: string;
-  /**@deprecated Type of sign message to be generated.
-   *
-   * This field will be removed in future releases and will rely on the
-   * message version
-   */
-  type?: SignatureType;
 
   /**
    * Creates a parsed Sign-In with Ethereum Message (EIP-4361) object from a
@@ -233,7 +221,7 @@ export class SiwcMessage {
 
         const addr =
           walletType === WalletType.FLUENT
-            ? PersonalMessage.recover(signature, message)
+            ? verifyCIP23Message(signature, message)
             : ethers.utils.verifyMessage(message, signature);
 
         if (addr !== this.address) {
@@ -324,7 +312,10 @@ export const generateNonce = (): string => {
  * @param domain
  * @returns
  */
-export const formatFluentMessage = (message: string, domain: string) => {
+export const getCIP23DomainMessage = (
+  message: string,
+  domain: string
+): TypedData => {
   return {
     types: {
       CIP23Domain: [
@@ -358,4 +349,19 @@ export const formatFluentMessage = (message: string, domain: string) => {
 export enum WalletType {
   METAMASK,
   FLUENT,
+}
+
+function verifyCIP23Message(signature: string, message: string) {
+  //console.log('Message CIP23', (message as any) instanceof TypedData)
+  const messageType = getCIP23DomainMessage(message, window.location.host);
+  const hashedMessage = keccak256(
+    cip23GetMessage(messageType as any, false, CIP23_DOMAIN)
+  );
+
+  return format.address(
+    (cfxSDKSign as any).publicKeyToAddress(
+      toBuffer(CfxMessage.recover(signature, hashedMessage))
+    ),
+    CONFLUX_NETWORK
+  );
 }
