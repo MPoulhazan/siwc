@@ -1,6 +1,6 @@
 import { randomStringForEntropy } from "@stablelib/random";
 import { Contract, ethers, utils } from "ethers";
-import { ParsedMessage, ParsedMessageRegExp } from "siwe-parser";
+import { ParsedMessage, ParsedMessageRegExp } from "siwc-parser";
 import { toBuffer } from "@fluent-wallet/utils";
 import { getMessage as cip23GetMessage, TypedData } from "cip-23";
 import { keccak256 } from "@ethersproject/keccak256";
@@ -26,7 +26,7 @@ export enum ErrorTypes {
 export class SiwcMessage {
   /**RFC 4501 dns authority that is requesting the signing. */
   domain: string;
-  /**Ethereum address performing the signing conformant to capitalization
+  /**Ethereum or Conflux address performing the signing conformant to capitalization
    * encoded checksum specified in EIP-55 where applicable. */
   address: string;
   /**Human-readable ASCII assertion that the user will sign, and it must not
@@ -68,7 +68,7 @@ export class SiwcMessage {
   signature?: string;
 
   /**
-   * Creates a parsed Sign-In with Ethereum Message (EIP-4361) object from a
+   * Creates a parsed Sign-In with object from a
    * string or an object. If a string is used an ABNF parser is called to
    * validate the parameter, otherwise the fields are attributed.
    * @param param {string | SiwcMessage} Sign message as a string or an object.
@@ -352,13 +352,13 @@ export enum WalletType {
 }
 
 function verifyCIP23Message(signature: string, message: string) {
-  //console.log('Message CIP23', (message as any) instanceof TypedData)
   const messageType = getCIP23DomainMessage(message, window.location.host);
   const hashedMessage = keccak256(
-    cip23GetMessage(messageType as any, false, CIP23_DOMAIN)
+    cip23GetMessage(messageType, false, CIP23_DOMAIN)
   );
 
   return format.address(
+    // TODO fix cfxSdk type
     (cfxSDKSign as any).publicKeyToAddress(
       toBuffer(CfxMessage.recover(signature, hashedMessage))
     ),

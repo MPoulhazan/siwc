@@ -2,7 +2,7 @@ import apgApi from "apg-js/src/apg-api/api";
 import apgLib from "apg-js/src/apg-lib/node-exports";
 
 const GRAMMAR = `
-sign-in-with-ethereum =
+sign-in-with-conflux =
     domain %s" wants you to sign in with your Conflux account:" LF
     address LF
     LF
@@ -321,7 +321,7 @@ export class ParsedMessage {
     };
     parser.ast.callbacks.resources = resources;
 
-    const result = parser.parse(grammarObj, "sign-in-with-ethereum", msg);
+    const result = parser.parse(grammarObj, "sign-in-with-conflux", msg);
     if (!result.success) {
       throw new Error(`Invalid message: ${JSON.stringify(result)}`);
     }

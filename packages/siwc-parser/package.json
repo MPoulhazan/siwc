@@ -1,9 +1,9 @@
 {
-  "name": "siwc",
+  "name": "siwc-parser",
   "version": "1.0.0",
-  "description": "Sign-In with Conflux",
-  "main": "dist/siwc.js",
-  "types": "dist/siwc.d.ts",
+  "description": "Parse Messages that conform to CIP-23: Sign-In with Conflux (SIWC)",
+  "main": "dist/parsers.js",
+  "types": "dist/parsers.d.ts",
   "directories": {
     "lib": "lib"
   },
@@ -12,21 +12,17 @@
     "build": "tsc"
   },
   "author": "Spruce Systems Inc.",
-  "license": "Apache-2.0",
   "keywords": [
     "conflux",
     "sign-in",
     "sign-in-with-conflux",
-    "siwc"
+    "siwc",
+    "siwc-parser"
   ],
   "homepage": "https://github.com/mpoulhazan/siwc",
+  "license": "Apache-2.0",
   "dependencies": {
-    "siwc-parser": "file:../siwc-parser",
-    "@stablelib/random": "^1.0.1",
     "apg-js": "^4.1.1"
-  },
-  "peerDependencies": {
-    "ethers": "5.5.1"
   },
   "repository": {
     "type": "git",

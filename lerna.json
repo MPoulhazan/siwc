@@ -1,5 +1,5 @@
 {
-  "packages": ["packages/siwc", "packages/siwe-parser"],
+  "packages": ["packages/siwc", "packages/siwc-parser"],
   "npmClient": "npm",
   "command": {
     "publish": {

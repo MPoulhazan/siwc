@@ -31,6 +31,6 @@
     "cip-23": "^0.2.0",
     "js-conflux-sdk": "^2.0.7",
     "siwc": "file:packages/siwc",
-    "siwe-parser": "file:packages/siwe-parser"
+    "siwc-parser": "file:packages/siwc-parser"
   }
 }
