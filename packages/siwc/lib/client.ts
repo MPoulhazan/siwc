@@ -9,8 +9,8 @@ import { Message as CfxMessage, sign as cfxSDKSign } from "js-conflux-sdk";
 const { format } = require("js-conflux-sdk");
 
 export const CONFLUX_CHAIN_ID = 1030;
-const CONFLUX_NETWORK = 1;
 const CIP23_DOMAIN = "CIP23Domain";
+const DEFAULT_NETWORK_VERSION = 1;
 
 /**
  * Possible message error types.
@@ -337,7 +337,8 @@ export const getCIP23DomainMessage = (
     primaryType: "Mail",
     domain: {
       name: domain,
-      version: "1",
+      // @ts-ignore
+      version: window.conflux.networkVersion,
       chainId: CONFLUX_CHAIN_ID,
     },
     message: {
@@ -358,10 +359,13 @@ function verifyCIP23Message(signature: string, message: string) {
   );
 
   return format.address(
-    // TODO fix cfxSdk type
-    (cfxSDKSign as any).publicKeyToAddress(
+    // @ts-ignore
+    cfxSDKSign.publicKeyToAddress(
       toBuffer(CfxMessage.recover(signature, hashedMessage))
     ),
-    CONFLUX_NETWORK
+    // @ts-ignore
+    window.conflux.networkVersion
+      ? +window.conflux.networkVersion
+      : DEFAULT_NETWORK_VERSION
   );
 }

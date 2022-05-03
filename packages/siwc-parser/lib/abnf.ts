@@ -28,7 +28,7 @@ address = "0x" 40*40HEXDIG / ("cfxtest:" / "cfx:") 42*( ALPHA / DIGIT )
 statement = 1*( reserved / unreserved / " " )
     ; The purpose is to exclude LF (line breaks).
 
-version = "1"
+version = "1" / "1029"
 
 nonce = 8*( ALPHA / DIGIT )
 
