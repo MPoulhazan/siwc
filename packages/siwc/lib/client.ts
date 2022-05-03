@@ -354,6 +354,8 @@ export enum WalletType {
 
 function verifyCIP23Message(signature: string, message: string) {
   const messageType = getCIP23DomainMessage(message, window.location.host);
+  // @ts-ignore
+  const networkVersion = window.conflux.networkVersion;
   const hashedMessage = keccak256(
     cip23GetMessage(messageType, false, CIP23_DOMAIN)
   );
@@ -363,9 +365,6 @@ function verifyCIP23Message(signature: string, message: string) {
     cfxSDKSign.publicKeyToAddress(
       toBuffer(CfxMessage.recover(signature, hashedMessage))
     ),
-    // @ts-ignore
-    window.conflux.networkVersion
-      ? +window.conflux.networkVersion
-      : DEFAULT_NETWORK_VERSION
+    networkVersion ? +networkVersion : DEFAULT_NETWORK_VERSION
   );
 }
