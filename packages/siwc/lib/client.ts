@@ -12,6 +12,11 @@ export const CONFLUX_CHAIN_ID = 1030;
 const CIP23_DOMAIN = "CIP23Domain";
 const DEFAULT_NETWORK_VERSION = 1;
 
+export enum WalletType {
+  METAMASK,
+  FLUENT,
+}
+
 /**
  * Possible message error types.
  */
@@ -221,7 +226,7 @@ export class SiwcMessage {
 
         const addr =
           walletType === WalletType.FLUENT
-            ? verifyCIP23Message(signature, message)
+            ? verifyCIP23Message(signature, message, this.chainId)
             : ethers.utils.verifyMessage(message, signature);
 
         if (addr !== this.address) {
@@ -314,7 +319,8 @@ export const generateNonce = (): string => {
  */
 export const getCIP23DomainMessage = (
   message: string,
-  domain: string
+  domain: string,
+  chainId: number
 ): TypedData => {
   return {
     types: {
@@ -338,8 +344,8 @@ export const getCIP23DomainMessage = (
     domain: {
       name: domain,
       // @ts-ignore
-      version: window.conflux.networkVersion,
-      chainId: CONFLUX_CHAIN_ID,
+      version: "1",
+      chainId,
     },
     message: {
       contents: message,
@@ -347,15 +353,24 @@ export const getCIP23DomainMessage = (
   };
 };
 
-export enum WalletType {
-  METAMASK,
-  FLUENT,
-}
-
-function verifyCIP23Message(signature: string, message: string) {
-  const messageType = getCIP23DomainMessage(message, window.location.host);
+/**
+ * Recover adress from signature for a message on given network
+ * @param signature Message signature
+ * @param message Message in string fromat
+ * @param chainId Chain id of network
+ * @returns wallet address
+ */
+function verifyCIP23Message(
+  signature: string,
+  message: string,
+  chainId: number
+) {
+  const messageType = getCIP23DomainMessage(
+    message,
+    window.location.host,
+    chainId
+  );
   // @ts-ignore
-  const networkVersion = window.conflux.networkVersion;
   const hashedMessage = keccak256(
     cip23GetMessage(messageType, false, CIP23_DOMAIN)
   );
@@ -365,6 +380,6 @@ function verifyCIP23Message(signature: string, message: string) {
     cfxSDKSign.publicKeyToAddress(
       toBuffer(CfxMessage.recover(signature, hashedMessage))
     ),
-    networkVersion ? +networkVersion : DEFAULT_NETWORK_VERSION
+    chainId || DEFAULT_NETWORK_VERSION
   );
 }
