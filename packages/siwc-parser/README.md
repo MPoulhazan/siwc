@@ -1,4 +1,4 @@
-# Sign in with Conflux
+# Sign in with Conflux (Parser)
 
 Sign-In with Conflux describes how Conflux accounts authenticate with
 off-chain services by signing a standard message format parameterized by scope,
@@ -8,19 +8,20 @@ identity providers, improve interoperability across off-chain services for
 Conflux-based authentication, and provide wallet vendors a consistent
 machine-readable message format to achieve improved user experiences and
 consent management.
+This library is the parser for EIP-55 or CIP-37 message.
 
 ## Getting Started
 
 To use siwc in you project, execute the following command
 
 ```
-npm i siwc
+npm i siwc-parser
 ```
 
 Or with yarn
 
 ```
-yarn add siwc
+yarn add siwc-parser
 ```
 
 ### Prerequisites
