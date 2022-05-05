@@ -13,8 +13,8 @@
     "test": "jest",
     "docs": "typedoc --plugin nlfurniss-typedoc-plugin-sourcefile-url --plugin typedoc-plugin-extras --sourcefile-url-prefix 'https://github.com/mpoulhazan/siwc' --favicon ./favicon.svg --out docs packages/siwc/lib/siwc.ts"
   },
-  "author": "Spruce Systems Inc.",
-  "license": "Apache-2.0",
+  "author": "MPoulhazan",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "ethers": "^5.5.1",

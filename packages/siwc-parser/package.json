@@ -1,6 +1,6 @@
 {
   "name": "siwc-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parse Messages that conform to CIP-23: Sign-In with Conflux (SIWC)",
   "main": "dist/parsers.js",
   "types": "dist/parsers.d.ts",
@@ -11,7 +11,7 @@
     "test": "jest",
     "build": "tsc"
   },
-  "author": "Spruce Systems Inc.",
+  "author": "Mickael Poulhazan",
   "keywords": [
     "conflux",
     "sign-in",
