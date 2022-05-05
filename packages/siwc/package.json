@@ -11,8 +11,8 @@
     "test": "jest",
     "build": "tsc"
   },
-  "author": "Spruce Systems Inc.",
-  "license": "Apache-2.0",
+  "author": "MPoulhazan",
+  "license": "MIT",
   "keywords": [
     "conflux",
     "sign-in",
@@ -21,9 +21,9 @@
   ],
   "homepage": "https://github.com/mpoulhazan/siwc",
   "dependencies": {
-    "siwc-parser": "file:../siwc-parser",
     "@stablelib/random": "^1.0.1",
-    "apg-js": "^4.1.1"
+    "apg-js": "^4.1.1",
+    "siwc-parser": "^1.0.0"
   },
   "peerDependencies": {
     "ethers": "5.5.1"

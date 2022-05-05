@@ -1,8 +1,7 @@
 import { randomStringForEntropy } from "@stablelib/random";
 import { Contract, ethers, utils } from "ethers";
 import { ParsedMessage, ParsedMessageRegExp } from "siwc-parser";
-import { toBuffer } from "@fluent-wallet/utils";
-import { getMessage as cip23GetMessage, TypedData } from "cip-23";
+import { getMessage as cip23GetMessage, TypedData, toBuffer } from "cip-23";
 import { keccak256 } from "@ethersproject/keccak256";
 import {
   Message as CfxMessage,
@@ -10,7 +9,6 @@ import {
   format,
 } from "js-conflux-sdk";
 
-export const CONFLUX_CHAIN_ID = 1030;
 const CIP23_DOMAIN = "CIP23Domain";
 const DEFAULT_NETWORK_VERSION = 1;
 
@@ -372,7 +370,6 @@ function verifyCIP23Message(
     window.location.host,
     chainId
   );
-  // @ts-ignore
   const hashedMessage = keccak256(
     cip23GetMessage(messageType, false, CIP23_DOMAIN)
   );
