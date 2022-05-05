@@ -12,9 +12,9 @@ import {
 const CIP23_DOMAIN = "CIP23Domain";
 const DEFAULT_NETWORK_VERSION = 1;
 
-export enum WalletType {
-  METAMASK,
-  FLUENT,
+export enum Space {
+  CONFLUX_E_SPACE,
+  CONFLUX_CORE,
 }
 
 /**
@@ -201,7 +201,7 @@ export class SiwcMessage {
    */
   async validate(
     signature: string = this.signature,
-    walletType: WalletType = WalletType.METAMASK,
+    space: Space = Space.CONFLUX_E_SPACE,
     provider?: ethers.providers.Provider | any
   ): Promise<SiwcMessage> {
     return new Promise<SiwcMessage>(async (resolve, reject) => {
@@ -225,7 +225,7 @@ export class SiwcMessage {
         }
 
         const addr =
-          walletType === WalletType.FLUENT
+          space === Space.CONFLUX_CORE
             ? verifyCIP23Message(signature, message, this.chainId)
             : ethers.utils.verifyMessage(message, signature);
 
