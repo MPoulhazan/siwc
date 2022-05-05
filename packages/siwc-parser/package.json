@@ -20,7 +20,7 @@
     "siwc-parser"
   ],
   "homepage": "https://github.com/mpoulhazan/siwc",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "dependencies": {
     "apg-js": "^4.1.1"
   },

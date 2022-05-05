@@ -4,9 +4,11 @@ import { ParsedMessage, ParsedMessageRegExp } from "siwc-parser";
 import { toBuffer } from "@fluent-wallet/utils";
 import { getMessage as cip23GetMessage, TypedData } from "cip-23";
 import { keccak256 } from "@ethersproject/keccak256";
-import { Message as CfxMessage, sign as cfxSDKSign } from "js-conflux-sdk";
-
-const { format } = require("js-conflux-sdk");
+import {
+  Message as CfxMessage,
+  sign as cfxSDKSign,
+  format,
+} from "js-conflux-sdk";
 
 export const CONFLUX_CHAIN_ID = 1030;
 const CIP23_DOMAIN = "CIP23Domain";
