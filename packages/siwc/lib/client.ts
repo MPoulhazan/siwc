@@ -226,7 +226,7 @@ export class SiwcMessage {
 
         const addr =
           space === Space.CONFLUX_CORE
-            ? verifyCIP23Message(signature, message, this.chainId)
+            ? verifyCIP23Message(signature, message, this.domain, this.chainId)
             : ethers.utils.verifyMessage(message, signature);
 
         if (addr !== this.address) {
@@ -363,13 +363,10 @@ export const getCIP23DomainMessage = (
 function verifyCIP23Message(
   signature: string,
   message: string,
+  domain: string,
   chainId: number
 ) {
-  const messageType = getCIP23DomainMessage(
-    message,
-    window.location.host,
-    chainId
-  );
+  const messageType = getCIP23DomainMessage(message, domain, chainId);
   const hashedMessage = keccak256(
     cip23GetMessage(messageType, false, CIP23_DOMAIN)
   );
