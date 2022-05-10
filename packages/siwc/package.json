@@ -24,7 +24,10 @@
   "dependencies": {
     "@stablelib/random": "^1.0.1",
     "apg-js": "^4.1.1",
-    "siwc-parser": "^1.0.0"
+    "babel-jest": "^28.1.0",
+    "jest": "^28.1.0",
+    "siwc-parser": "^1.0.0",
+    "ts-jest": "^28.0.2"
   },
   "peerDependencies": {
     "ethers": "5.5.1"

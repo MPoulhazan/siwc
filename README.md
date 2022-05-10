@@ -35,7 +35,7 @@ Development can occur on the `package/*` level with tests being run on each pack
 
 ## Running the tests
 
-Run `npm run test` to run the tests with Jest.
+Go to package `siwc` or `siwc-parser` and run `npm run test` to run the tests with Jest.
 
 ## Deployment
 

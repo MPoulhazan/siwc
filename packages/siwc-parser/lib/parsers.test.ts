@@ -1,10 +1,10 @@
-var parsingPositive: object = require("../../../test/parsing_positive.json");
+var parsingPositive: object = require("../../../test/parsing_positive");
 var parsingNegative: object = require("../../../test/parsing_negative.json");
 
 //
 for (const client of ["abnf", "regex"].values()) {
   describe(`${client.toUpperCase()} Client`, () => {
-    let ParsedMessage;
+    let ParsedMessage = require("./parsers").ParsedMessage;
     beforeEach(
       async () => (ParsedMessage = (await import(`./${client}`)).ParsedMessage)
     );

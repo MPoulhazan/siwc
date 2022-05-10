@@ -22,7 +22,10 @@
   "homepage": "https://github.com/mpoulhazan/siwc",
   "license": "MIT",
   "dependencies": {
-    "apg-js": "^4.1.1"
+    "apg-js": "^4.1.1",
+    "babel-jest": "^28.1.0",
+    "jest": "^28.1.0",
+    "ts-jest": "^28.0.2"
   },
   "repository": {
     "type": "git",
