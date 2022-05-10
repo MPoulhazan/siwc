@@ -1,14 +1,27 @@
 {
-    "example message": {
+    "example message eSpace": {
         "domain": "login.xyz",
-        "address": "0x9D85ca56217D2bb651b00f15e694EB7E713637D4",
-        "statement": "Sign-In With Ethereum Example Statement",
+        "address": "0x2F495373457cc901A3D4b7c05c62be3EFCF536F2",
+        "statement": "Sign-In With Conflux Example Statement",
         "uri": "https://login.xyz",
         "version": "1",
         "nonce": "bTyXgcQxn2htgkjJn",
         "issuedAt": "2022-01-27T17:09:38.578Z",
         "chainId": 1,
         "expirationTime": "2100-01-07T14:31:43.952Z",
-        "signature": "0xdc35c7f8ba2720df052e0092556456127f00f7707eaa8e3bbff7e56774e7f2e05a093cfc9e02964c33d86e8e066e221b7d153d27e5a2e97ccd5ca7d3f2ce06cb1b"
+        "signature": "0xd80e51b7b77f08b6120e6a3e7e7c164511dc5f75b182a75332e9eaf0cfb8367b32c2eddcf098ee5f3254775d4e7154cb501f95e84f256c56260db5455c31d4721b",
+        "space": "eSpace"
+    },
+    "example message core": {
+        "domain": "localhost:8080",
+        "address": "cfx:aansx7bayrjht309tecjd1fnk58mxnap0p4t8z8u60",
+        "statement": "Sign in with Conflux to the app.",
+        "uri": "http://localhost:8080",
+        "version": "1",
+        "nonce": "R29PGyiqqV4b3U8NZ",
+        "issuedAt": "2022-05-10T03:39:24.593Z",
+        "chainId": 1029,
+        "signature": "0x145ee2b886f6068cbcd1c6b23c51832a8c3d7488115c639c3c391606b41c485a43272124400bfc48689b34ffc55dc42b436a904c76f478566a250aadc877b4be01",
+        "space": "core"
     }
 }

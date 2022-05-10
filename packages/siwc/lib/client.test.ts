@@ -2,7 +2,7 @@ var parsingPositive: object = require("../../../test/parsing_positive.json");
 var validationPositive: object = require("../../../test/validation_positive.json");
 var validationNegative: object = require("../../../test/validation_negative.json");
 import { Wallet } from "ethers";
-import { SiwcMessage } from "./client";
+import { SiwcMessage, Space } from "./client";
 
 describe(`Message Generation`, () => {
   test.concurrent.each(Object.entries(parsingPositive))(
@@ -18,8 +18,14 @@ describe(`Message Validation`, () => {
   test.concurrent.each(Object.entries(validationPositive))(
     "Validates message successfully: %s",
     async (_, test_fields) => {
+      const space =
+        test_fields.space === "core"
+          ? Space.CONFLUX_CORE
+          : Space.CONFLUX_E_SPACE;
       const msg = new SiwcMessage(test_fields);
-      await expect(msg.validate(test_fields.signature)).resolves.not.toThrow();
+      await expect(
+        msg.validate(test_fields.signature, space)
+      ).resolves.not.toThrow();
     }
   );
   test.concurrent.each(Object.entries(validationNegative))(

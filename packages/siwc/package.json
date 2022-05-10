@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "jest",
+    "test-verbose": "jest --verbose",
     "build": "tsc"
   },
   "author": "MPoulhazan",

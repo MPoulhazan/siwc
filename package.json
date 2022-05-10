@@ -11,6 +11,7 @@
     "bootstrap": "lerna bootstrap && lerna exec npm install",
     "build": "lerna run build",
     "test": "jest",
+    "test-verbose": "jest --verbose",
     "docs": "typedoc --plugin nlfurniss-typedoc-plugin-sourcefile-url --plugin typedoc-plugin-extras --sourcefile-url-prefix 'https://github.com/mpoulhazan/siwc' --favicon ./favicon.svg --out docs packages/siwc/lib/siwc.ts"
   },
   "author": "MPoulhazan",

@@ -2,7 +2,7 @@
     "expired message": {
         "domain": "login.xyz",
         "address": "0x6Da01670d8fc844e736095918bbE11fE8D564163",
-        "statement": "Sign-In With Ethereum Example Statement",
+        "statement": "Sign-In With Conflux Example Statement",
         "uri": "https://login.xyz",
         "version": "1",
         "nonce": "lx2nx4so",
@@ -14,7 +14,7 @@
     "malformed signature": {
         "domain": "login.xyz",
         "address": "0x6Da01670d8fc844e736095918bbE11fE8D564163",
-        "statement": "Sign-In With Ethereum Example Statement",
+        "statement": "Sign-In With Conflux Example Statement",
         "uri": "https://login.xyz",
         "version": "1",
         "nonce": "rmplqh1gf",
@@ -26,7 +26,7 @@
     "wrong signature": {
         "domain": "login.xyz",
         "address": "0x6Da01670d8fc844e736095918bbE11fE8D564163",
-        "statement": "Sign-In With Ethereum Example Statement",
+        "statement": "Sign-In With Conflux Example Statement",
         "uri": "https://login.xyz",
         "version": "1",
         "nonce": "rmplqh1gf",
@@ -38,7 +38,7 @@
     "invalid expiration time": {
         "domain": "login.xyz",
         "address": "0x6Da01670d8fc844e736095918bbE11fE8D564163",
-        "statement": "Sign-In With Ethereum Example Statement",
+        "statement": "Sign-In With Conflux Example Statement",
         "uri": "https://login.xyz",
         "version": "1",
         "nonce": "o8zxjgmp",
