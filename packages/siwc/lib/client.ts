@@ -1,15 +1,14 @@
 import { randomStringForEntropy } from "@stablelib/random";
 import { Contract, ethers, utils } from "ethers";
 import { ParsedMessage, ParsedMessageRegExp } from "siwc-parser";
-import { getMessage as cip23GetMessage, TypedData, toBuffer } from "cip-23";
-import { keccak256 } from "@ethersproject/keccak256";
+import { toBuffer } from "cip-23";
 import {
-  Message as CfxMessage,
   sign as cfxSDKSign,
+  // @ts-ignore
+  PersonalMessage as CfxPersonalMessage,
   format,
 } from "js-conflux-sdk";
 
-const CIP23_DOMAIN = "CIP23Domain";
 const DEFAULT_NETWORK_VERSION = 1;
 
 export enum Space {
@@ -226,7 +225,7 @@ export class SiwcMessage {
 
         const addr =
           space === Space.CONFLUX_CORE
-            ? verifyCIP23Message(signature, message, this.domain, this.chainId)
+            ? recoverAddressFromMessage(signature, message, this.chainId)
             : ethers.utils.verifyMessage(message, signature);
 
         if (addr !== this.address) {
@@ -312,70 +311,19 @@ export const generateNonce = (): string => {
 };
 
 /**
- *
- * @param message Format message to CIP23
- * @param domain
- * @returns
- */
-export const getCIP23DomainMessage = (
-  message: string,
-  domain: string,
-  chainId: number
-): TypedData => {
-  return {
-    types: {
-      CIP23Domain: [
-        { name: "name", type: "string" },
-        { name: "version", type: "string" },
-        { name: "chainId", type: "uint256" },
-        { name: "verifyingContract", type: "address" },
-      ],
-      Person: [
-        { name: "name", type: "string" },
-        { name: "wallet", type: "address" },
-      ],
-      Mail: [
-        { name: "from", type: "Person" },
-        { name: "to", type: "Person" },
-        { name: "contents", type: "string" },
-      ],
-    },
-    primaryType: "Mail",
-    domain: {
-      name: domain,
-      // @ts-ignore
-      version: "1",
-      chainId,
-    },
-    message: {
-      contents: message,
-    },
-  };
-};
-
-/**
  * Recover adress from signature for a message on given network
  * @param signature Message signature
  * @param message Message in string fromat
  * @param chainId Chain id of network
  * @returns wallet address
  */
-function verifyCIP23Message(
+function recoverAddressFromMessage(
   signature: string,
   message: string,
-  domain: string,
   chainId: number
 ) {
-  const messageType = getCIP23DomainMessage(message, domain, chainId);
-  const hashedMessage = keccak256(
-    cip23GetMessage(messageType, false, CIP23_DOMAIN)
-  );
-
-  return format.address(
-    // @ts-ignore
-    cfxSDKSign.publicKeyToAddress(
-      toBuffer(CfxMessage.recover(signature, hashedMessage))
-    ),
-    chainId || DEFAULT_NETWORK_VERSION
-  );
+  const pub = CfxPersonalMessage.recover(signature, message);
+  // @ts-ignore
+  const addr = cfxSDKSign.publicKeyToAddress(toBuffer(pub));
+  return format.address(addr, chainId || DEFAULT_NETWORK_VERSION);
 }

@@ -18,10 +18,10 @@
         "statement": "Sign in with Conflux to the app.",
         "uri": "http://localhost:8080",
         "version": "1",
-        "nonce": "R29PGyiqqV4b3U8NZ",
-        "issuedAt": "2022-05-10T03:39:24.593Z",
+        "nonce": "vO4JoGb3p0asbbgw5",
+        "issuedAt": "2022-05-11T20:58:17.629Z",
         "chainId": 1029,
-        "signature": "0x145ee2b886f6068cbcd1c6b23c51832a8c3d7488115c639c3c391606b41c485a43272124400bfc48689b34ffc55dc42b436a904c76f478566a250aadc877b4be01",
+        "signature": "0x01a5f85244fe4b0397f4db13b66f99a8946c4a7069c0e1ad76e11a64b6302de55e8879ef54dc990bdebaa9028fa9ff4cc4f7b73397e4db9c20c9f530b0b0782500",
         "space": "core"
     }
 }
