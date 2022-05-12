@@ -23,6 +23,10 @@ Or with yarn
 yarn add siwc
 ```
 
+## Examples
+
+A siwc-quickstart project with front and back examples can be found <a href="https://github.com/MPoulhazan/siwc-quickstart" target="_blank">here</a>.
+
 ### Prerequisites
 
 Npm installed
