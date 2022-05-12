@@ -27,11 +27,11 @@ yarn add siwc
 
 A siwc-quickstart project with front and back examples can be found <a href="https://github.com/MPoulhazan/siwc-quickstart" target="_blank">here</a>.
 
-### Prerequisites
+## Prerequisites
 
 Npm installed
 
-### Installing
+## Installing
 
 Run `npm install` to install dependencies, then `npm bootstrap` to link the dependencies in their respective packages.
 Afteward run `npm run build` to build the library.
