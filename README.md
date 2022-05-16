@@ -25,6 +25,8 @@ Or with yarn
 yarn add siwc
 ```
 
+Check this <a href="https://medium.com/@mickalpoulhazan/f394d9c0d099" target="_blank">article</a> for more informations.
+
 ## Examples
 
 A siwc-quickstart project with front and back examples can be found <a href="https://github.com/MPoulhazan/siwc-quickstart" target="_blank">here</a>.
