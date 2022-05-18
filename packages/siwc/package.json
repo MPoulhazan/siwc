@@ -1,6 +1,6 @@
 {
   "name": "siwc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Sign-In with Conflux",
   "main": "dist/siwc.js",
   "types": "dist/siwc.d.ts",

@@ -10,7 +10,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap && lerna exec npm install",
     "build": "lerna run build",
-    "docs": "typedoc --plugin nlfurniss-typedoc-plugin-sourcefile-url --plugin typedoc-plugin-extras --sourcefile-url-prefix 'https://github.com/mpoulhazan/siwc' --favicon ./favicon.svg --out docs packages/siwc/lib/siwc.ts"
+    "test": "cd packages/siwc && jest "
   },
   "author": "MPoulhazan",
   "license": "MIT",
@@ -19,19 +19,17 @@
     "ethers": "^5.5.1",
     "jest": "^27.5.1",
     "lerna": "^4.0.0",
-    "nlfurniss-typedoc-plugin-sourcefile-url": "^2.0.0",
     "ts-jest": "^27.1.4",
-    "typedoc": "^0.22.7",
-    "typedoc-plugin-extras": "^2.2.1",
     "typescript": "^4.4.4"
   },
   "dependencies": {
     "@babel/preset-env": "^7.17.10",
-    "@fluent-wallet/utils": "^0.0.3",
     "babel-jest": "^28.1.0",
     "cip-23": "^0.2.0",
+    "jest": "^27.5.1",
     "js-conflux-sdk": "^2.0.7",
     "siwc": "file:packages/siwc",
-    "siwc-parser": "file:packages/siwc-parser"
+    "siwc-parser": "file:packages/siwc-parser",
+    "ts-jest": "^28.0.2"
   }
 }

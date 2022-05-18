@@ -27,6 +27,7 @@ export enum ErrorTypes {
   /**Thrown when some required field is missing. */
   MALFORMED_SESSION = "Malformed session.",
 }
+
 export class SiwcMessage {
   /**RFC 4501 dns authority that is requesting the signing. */
   domain: string;
@@ -62,14 +63,6 @@ export class SiwcMessage {
    * resolved as part of authentication by the relying party. They are
    * expressed as RFC 3986 URIs separated by `\n- `. */
   resources?: Array<string>;
-  /**@deprecated
-   * Signature of the message signed by the wallet.
-   *
-   * This field will be removed in future releases, an additional parameter
-   * was added to the validate function were the signature goes to validate
-   * the message.
-   */
-  signature?: string;
 
   /**
    * Creates a parsed Sign-In with object from a
@@ -199,7 +192,7 @@ export class SiwcMessage {
    * @returns {Promise<SiwcMessage>} This object if valid.
    */
   async validate(
-    signature: string = this.signature,
+    signature: string,
     space: Space = Space.CONFLUX_E_SPACE,
     provider?: ethers.providers.Provider | any
   ): Promise<SiwcMessage> {
@@ -286,10 +279,7 @@ export const checkContractWalletSignature = async (
   try {
     const walletContract = new Contract(message.address, abi, provider);
     const hashMessage = utils.hashMessage(message.prepareMessage());
-    return await walletContract.isValidSignature(
-      hashMessage,
-      message.signature
-    );
+    return await walletContract.isValidSignature(hashMessage);
   } catch (e) {
     throw e;
   }
